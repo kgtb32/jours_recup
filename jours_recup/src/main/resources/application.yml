@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${INFOPLAY_DATABASE_URL}
+    username: ${INFOPLAY_DATABASE_USERNAME}
+    password: ${INFOPLAY_DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
