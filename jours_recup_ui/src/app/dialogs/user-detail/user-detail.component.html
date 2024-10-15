@@ -1,0 +1,27 @@
+<app-edit-component (dataChanged)="this.editUserInfo('LASTNAME_EDIT', $event)" description="Nom" [data]="this.user.lastName"></app-edit-component>
+<app-edit-component (dataChanged)="this.editUserInfo('FIRSTNAME_EDIT', $event)" description="Prénom" [data]="this.user.firstName"></app-edit-component>
+<app-edit-component (dataChanged)="this.editRecuperationDays($event)" description="Jours de récupération" [data]="this.user.recuperationDays"></app-edit-component>
+
+<div class="d-flex justify-content-between mt-2">
+    <h2>Évennements :</h2>
+    <div>
+        <p-button severity="danger" icon="pi pi-trash" label="Effacer" (click)="clearHistory()"></p-button>
+    </div>
+</div>
+<div>
+    <div style="overflow: auto; max-height: 46vh; padding-right: 1em">
+        <p-timeline [value]="history" align="right">
+            <ng-template pTemplate="content" let-event>
+                <p-card styleClass="mt-2">
+                    <h4>{{ event.date }}</h4>
+                    <p>Type d'évennement : {{ this.eventsTranslations[event.action] }}</p>
+                    @if(event.oldValue){
+                    <p>Ancienne valeur : {{ event.oldValue }}</p>
+                    } @if(event.newValue){
+                    <p>Nouvelle valeur : {{ event.newValue }}</p>
+                    }
+                </p-card>
+            </ng-template>
+        </p-timeline>
+    </div>
+</div>
