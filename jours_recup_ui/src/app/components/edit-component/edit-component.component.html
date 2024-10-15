@@ -1,0 +1,15 @@
+<div class="d-flex flex-column">
+    <label htmlFor="form">{{ description }}</label>
+    <div class="d-flex">
+        <input class="flex-1" type="text" pInputText id="form" [(ngModel)]="this._data" [disabled]="!this.isEditing" />
+        @if (isEditing) {
+        <div class="d-flex">
+            <p-button severity="success" icon="pi pi-check" (click)="commit()"></p-button>
+            <p-button severity="danger" icon="pi pi-times" (click)="cancel()"></p-button>
+        </div>
+        } @else {
+        <p-button (click)="this.isEditing = true" icon="pi pi-pencil"></p-button>
+        <p-button icon="pi pi-times" class="v-hidden"></p-button>
+        }
+    </div>
+</div>
