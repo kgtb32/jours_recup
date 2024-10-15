@@ -1,0 +1,44 @@
+<p-toolbar>
+    <button pButton (click)="this.addUsers()">Ajouter une personne</button>
+    <input type="text" [(ngModel)]="filter" pInputText placeholder="rechercher" (input)="this.doFilter()" />
+    <button pButton (click)="doExportExcel()">Export Excel</button>
+</p-toolbar>
+<p-table [rows]="10" lazy="false" [rowsPerPageOptions]="[10, 25, 50]" [value]="users" styleClass="p-datatable-striped" [paginator]="true" [globalFilterFields]="['lastName', 'firstName']">
+    <ng-template pTemplate="header">
+        <tr>
+            <th pSortableColumn="lastName" scope="col">Nom <p-sortIcon field="lastName" /></th>
+            <th pSortableColumn="firstName" scope="col">Prénom <p-sortIcon field="firstName" /></th>
+            <th pSortableColumn="recuperationDays" scope="col">Jours de récupération <p-sortIcon field="recuperationDays" /></th>
+            <th scope="col"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.recuperationDays }}</td>
+            <td>
+                <div class="d-flex">
+                    <span class="flex-1"></span>
+                    <p-button icon="pi pi-search" (click)="showUserDetail(user)"></p-button>
+                    <p-button severity="danger" icon="pi pi-trash" (click)="op.toggle($event)"></p-button>
+                    <p-overlayPanel #op>
+                        <p>êtes vous sûr ?</p>
+                        <div class="d-flex">
+                            <p-button (onClick)="op.toggle(false)">Fermer</p-button>
+                            <p-button severity="danger" (onClick)="deleteUser(user.id)">Supprimer</p-button>
+                        </div>
+                    </p-overlayPanel>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+@if (this.users.length == 0) {
+<div>
+    <p-messages severity="warn" [value]="noDataMessage" [enableService]="false">
+        <p>Aucune entrée dans la base de données</p>
+    </p-messages>
+</div>
+}

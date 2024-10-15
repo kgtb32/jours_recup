@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DbService } from './services/db.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'jours_recup_ui';
+  constructor(private dbService: DbService) {
+  }
 }
