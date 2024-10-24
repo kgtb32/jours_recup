@@ -52,6 +52,10 @@ export class AppDB extends Dexie {
         return this.history.add({ ...history, id: nanoid(32) })
     }
 
+    getHistoryById(id: string): Promise<History | undefined> {
+        return this.history.filter(history => history.id === id).first()
+    }
+
     getUserHistory(userId: string): Promise<History[]> {
         return this.history
             .orderBy('date')
@@ -80,6 +84,10 @@ export class AppDB extends Dexie {
         return db.import(blob, {
             clearTablesBeforeImport: true
         })
+    }
+
+    getUserById(id: string): Promise<User | undefined> {
+        return this.users.filter(user => user.id === id).first()
     }
 }
 
