@@ -4,6 +4,8 @@ import { History } from './entities/history'
 import { deburr } from 'lodash'
 
 export class AppDB extends Dexie {
+    private static readonly MAX_HISTORY_ALL = 20000;
+
     users!: Table<User, number>
     history!: Table<History, number>
 
@@ -58,6 +60,14 @@ export class AppDB extends Dexie {
 
     clearUserHistory(userId: number) {
         return this.history.filter((history) => history.userId == userId).delete()
+    }
+
+    allHistory() {
+        return this.history
+            .orderBy('date')
+            .reverse()
+            .limit(AppDB.MAX_HISTORY_ALL)
+            .toArray()
     }
 }
 
