@@ -1,4 +1,4 @@
-export type Action = 'CREATE' | 'CREDIT_EDIT' | 'FIRSTNAME_EDIT' | 'LASTNAME_EDIT'
+export type Action = 'CREATE' | 'CREDIT_EDIT' | 'FIRSTNAME_EDIT' | 'LASTNAME_EDIT' | 'CONFLICT'
 
 export interface History {
     id?: string

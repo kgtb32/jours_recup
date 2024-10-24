@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import dayjs from 'dayjs'
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
+import { DynamicDialogConfig } from 'primeng/dynamicdialog'
 import { History } from '../../database/entities/history'
 import { User } from '../../database/entities/user'
 import { RecuperationDays } from '../../models/recuperation-days'
@@ -18,7 +18,7 @@ export class UserDetailComponent {
 
     public readonly eventsTranslations: { [key: string]: string } = eventTranslations
 
-    constructor(readonly config: DynamicDialogConfig, private readonly dbService: DbService, private readonly ref: DynamicDialogRef) {
+    constructor(readonly config: DynamicDialogConfig, private readonly dbService: DbService) {
         this.user = config.data.user
         this.history = config.data.history
     }

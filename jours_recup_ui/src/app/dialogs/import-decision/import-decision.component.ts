@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DbService } from '../../services/db.service';
-import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ConflictResolutionComponent } from '../conflict-resolution/conflict-resolution.component';
 
 @Component({
   selector: 'app-import-decision',
@@ -11,7 +12,11 @@ export class ImportDecisionComponent {
 
   importChoice: 'normal' | 'conflicts' = 'normal'
 
-  constructor(private readonly dbService: DbService, private readonly ref: DynamicDialogRef) { }
+  constructor(
+    private readonly dbService: DbService,
+    private readonly ref: DynamicDialogRef,
+    private readonly dialogService: DialogService
+  ) { }
 
   fileSelected(event: Event) {
     const files = (event.target as HTMLInputElement).files
@@ -23,7 +28,15 @@ export class ImportDecisionComponent {
   private conflictImport(file: File) {
     file.text()
       .then(file => this.dbService.conflictImport(file))
-      .then(e => console.log(e))
+      .then(conflicts => {
+        this.dialogService.open(ConflictResolutionComponent, {
+          data: {
+            conflicts
+          }
+        }).onClose.subscribe({
+          next: () => this.ref.close()
+        })
+      })
       .catch(e => alert("fail " + e))
   }
 

@@ -1,0 +1,19 @@
+<div class="d-flex gap-1">
+    @if (this.currentConflict) {
+    <div>
+        <p>Version actuelle :</p>
+        <p>Nom : {{ currentConflict.user.lastName }}</p>
+        <p>Prénom : {{ currentConflict.user.firstName }}</p>
+        <p>Jours de récupération : {{ currentConflict.user.recuperationDays }}</p>
+        <p-button (onClick)="this.accept(this.currentConflict.user, this.currentConflict.newUser)">Accepter cette version</p-button>
+    </div>
+
+    <div>
+        <p>Version du fichier :</p>
+        <p>Nom : {{ currentConflict.newUser.lastName }}</p>
+        <p>Prénom : {{ currentConflict.newUser.firstName }}</p>
+        <p>Jours de récupération : {{ currentConflict.newUser.recuperationDays }}</p>
+        <p-button (onClick)="this.accept(this.currentConflict.newUser, this.currentConflict.user)">Accepter cette version</p-button>
+    </div>
+    }
+</div>
