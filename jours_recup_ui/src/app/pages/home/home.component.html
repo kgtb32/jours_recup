@@ -1,5 +1,11 @@
+<input type="file" #fileUpload (change)="this.fileSelected($event)" class="d-none" />
+
 <p-toolbar>
-    <button pButton (click)="this.addUsers()">Ajouter une personne</button>
+    <div class="d-flex gap-1">
+        <button pButton (click)="fileUpload.click()">Importer</button>
+        <button pButton (click)="this.exportDB()">Enregistrer</button>
+        <button pButton (click)="this.addUsers()">Ajouter une personne</button>
+    </div>
     <input type="text" [(ngModel)]="filter" pInputText placeholder="rechercher" (input)="this.doFilter()" />
     <button pButton (click)="doExportExcel()">Export Excel</button>
 </p-toolbar>
