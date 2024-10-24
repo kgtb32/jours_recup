@@ -58,7 +58,7 @@ export class UserDetailComponent {
         const finalUser = { ...this.user, recuperationDays: value.days }
         Promise.all([
             this.dbService.database.editUser(this.user.id!, finalUser),
-            this.dbService.database.history.add({
+            this.dbService.database.addHistory({
                 action: 'CREDIT_EDIT',
                 date: new Date(value.date),
                 userId: this.user.id!,

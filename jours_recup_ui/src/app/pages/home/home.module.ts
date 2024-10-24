@@ -11,6 +11,7 @@ import { UserDetailModule } from '../../dialogs/user-detail/user-detail.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from 'primeng/overlay';
 import { OverlayPanelModule } from 'primeng/overlaypanel'
+import { ImportDecisionModule } from '../../dialogs/import-decision/import-decision.module';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel'
     InputTextModule,
     UserCreateModule,
     UserDetailModule,
+    ImportDecisionModule,
     ToolbarModule,
     MessagesModule,
     FormsModule,

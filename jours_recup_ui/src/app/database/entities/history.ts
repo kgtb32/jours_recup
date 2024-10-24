@@ -1,8 +1,8 @@
 export type Action = 'CREATE' | 'CREDIT_EDIT' | 'FIRSTNAME_EDIT' | 'LASTNAME_EDIT'
 
 export interface History {
-    id?: number
-    userId: number
+    id?: string
+    userId: string
     date: Date
     action: Action
     reason?: string

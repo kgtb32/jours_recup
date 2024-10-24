@@ -7,6 +7,7 @@ import { UserDetailComponent } from '../../dialogs/user-detail/user-detail.compo
 import { DbService } from '../../services/db.service'
 import { exportExcel } from '../../services/export-excel'
 import { downloadFile } from '../../services/file-download'
+import { ImportDecisionComponent } from '../../dialogs/import-decision/import-decision.component'
 
 @Component({
     selector: 'app-home',
@@ -34,19 +35,13 @@ export class HomeComponent implements OnInit {
         })
     }
 
+    importDB() {
+        this.dialogService.open(ImportDecisionComponent, { header: 'Import' })
+    }
+
     exportDB() {
         this.dbService.database.exportDb()
             .then(blob => downloadFile(blob, "save.json"))
-    }
-
-    fileSelected(event: Event) {
-        const files = (event.target as HTMLInputElement).files
-        if (files?.[0]) {
-            this.dbService.database
-                .importDb(files[0])
-                .then(() => alert("upload OK"))
-                .catch(e => alert("fail " + e))
-        }
     }
 
     doFilter() {
@@ -82,7 +77,7 @@ export class HomeComponent implements OnInit {
         })
     }
 
-    deleteUser(userId: number) {
+    deleteUser(userId: string) {
         this.dbService.database
             .deleteUser(userId)
             .then(() => this.getUsers())
