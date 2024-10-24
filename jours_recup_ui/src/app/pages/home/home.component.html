@@ -2,12 +2,12 @@
 
 <p-toolbar>
     <div class="d-flex gap-1">
-        <button pButton (click)="fileUpload.click()">Importer</button>
-        <button pButton (click)="this.exportDB()">Enregistrer</button>
-        <button pButton (click)="this.addUsers()">Ajouter une personne</button>
+        <p-button icon="pi pi-folder-open" label="Importer" (click)="fileUpload.click()"></p-button>
+        <p-button icon="pi pi-save" label="Enregistrer" (click)="this.exportDB()"></p-button>
+        <p-button icon="pi pi-user-plus" label="Ajouter une personne" (click)="this.addUsers()"></p-button>
     </div>
     <input type="text" [(ngModel)]="filter" pInputText placeholder="rechercher" (input)="this.doFilter()" />
-    <button pButton (click)="doExportExcel()">Export Excel</button>
+    <p-button icon="pi pi-file-excel" (click)="doExportExcel()" label="Export Excel"></p-button>
 </p-toolbar>
 <p-table [rows]="10" lazy="false" [rowsPerPageOptions]="[10, 25, 50]" [value]="users" styleClass="p-datatable-striped" [paginator]="true" [globalFilterFields]="['lastName', 'firstName']">
     <ng-template pTemplate="header">
