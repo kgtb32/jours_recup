@@ -30,7 +30,6 @@ export class RecuperationDaysEditComponent {
   })
 
   commit() {
-    console.log(this.formGroup.value)
     this.dataChanged.next(this.formGroup.value)
     this.reset()
   }
