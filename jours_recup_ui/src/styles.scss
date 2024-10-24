@@ -1,4 +1,4 @@
-@import "primeicons/primeicons.css";
+@import 'primeicons/primeicons.css';
 
 /* You can add global styles to this file, and also import other style files */
 .d-flex {
@@ -13,18 +13,22 @@
     margin-top: 0.5em;
 }
 
-.p-timeline-event-opposite{
+.p-timeline-event-opposite {
     display: none;
 }
 
-.flex-1{
+.flex-1 {
     flex: 1;
 }
 
-.v-hidden{
+.v-hidden {
     visibility: hidden;
 }
 
-.justify-content-between{
+.justify-content-between {
     justify-content: space-between;
+}
+
+.mt-auto {
+    margin-top: auto;
 }
