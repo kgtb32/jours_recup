@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DbService } from '../../services/db.service';
+import { SaveStateService } from '../../services/save-state.service';
 
 
 export interface UserCreateForm {
@@ -20,7 +21,11 @@ export class UserCreateComponent {
     lastName: new FormControl("", [Validators.required]),
   })
 
-  constructor(private readonly dbService: DbService, private readonly ref: DynamicDialogRef) {
+  constructor(
+    private readonly dbService: DbService,
+    private readonly ref: DynamicDialogRef,
+    private readonly saveStateService: SaveStateService
+  ) {
   }
 
   close() {
@@ -35,7 +40,10 @@ export class UserCreateComponent {
     }
     this.dbService.database.addUser(user)
       .then(id => this.dbService.database.addHistory({ action: 'CREATE', date: new Date(), userId: id }))
-      .then(() => this.ref.close(user))
+      .then(() => {
+        this.saveStateService.unsaved()
+        this.ref.close(user)
+      })
       .catch(e => alert("error !" + e))
   }
 }

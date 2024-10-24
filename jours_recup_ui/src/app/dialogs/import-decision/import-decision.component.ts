@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DbService } from '../../services/db.service';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ConflictResolutionComponent } from '../conflict-resolution/conflict-resolution.component';
+import { SaveStateService } from '../../services/save-state.service';
 
 @Component({
   selector: 'app-import-decision',
@@ -15,7 +16,8 @@ export class ImportDecisionComponent {
   constructor(
     private readonly dbService: DbService,
     private readonly ref: DynamicDialogRef,
-    private readonly dialogService: DialogService
+    private readonly dialogService: DialogService,
+    private readonly saveStateState: SaveStateService
   ) { }
 
   fileSelected(event: Event) {
@@ -43,7 +45,7 @@ export class ImportDecisionComponent {
   private normalImport(file: File) {
     this.dbService.database
       .importDb(file)
-      .then(() => alert("upload OK"))
+      .then(() => this.saveStateState.save())
       .catch(e => alert("fail " + e))
       .finally(() => this.afterUpload())
   }
