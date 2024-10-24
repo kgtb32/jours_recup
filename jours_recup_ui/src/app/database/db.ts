@@ -2,6 +2,7 @@ import Dexie, { PromiseExtended, Table } from 'dexie'
 import { User } from './entities/user'
 import { History } from './entities/history'
 import { deburr } from 'lodash'
+import 'dexie-export-import'
 
 export class AppDB extends Dexie {
     private static readonly MAX_HISTORY_ALL = 20000;
@@ -68,6 +69,16 @@ export class AppDB extends Dexie {
             .reverse()
             .limit(AppDB.MAX_HISTORY_ALL)
             .toArray()
+    }
+
+    exportDb() {
+        return this.export()
+    }
+
+    importDb(blob: Blob) {
+        return db.import(blob, {
+            clearTablesBeforeImport: true
+        })
     }
 }
 

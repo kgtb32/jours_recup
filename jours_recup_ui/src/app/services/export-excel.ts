@@ -2,6 +2,7 @@ import { History } from "../database/entities/history";
 import { User } from "../database/entities/user";
 import { Workbook } from 'exceljs'
 import { eventTranslations } from "../statics/event-translations";
+import { downloadFile } from "./file-download";
 
 export async function exportExcel(user: User[], history: History[]) {
     const wb = new Workbook();
@@ -9,10 +10,7 @@ export async function exportExcel(user: User[], history: History[]) {
     addHistory(wb, history, user)
     const file = await wb.xlsx.writeBuffer();
     const blob = new Blob([file], { type: 'application/vnd.openxmlformats-officedocument.spreadsheet.sheet;charset=UTF-8' })
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.download = "Export jours de récupération.xlsx"
-    link.click();
+    downloadFile(blob, "Export jours de récupération.xlsx")
 }
 
 function addUsers(wb: Workbook, user: User[]) {

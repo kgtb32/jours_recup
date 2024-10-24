@@ -6,6 +6,7 @@ import { UserCreateComponent } from '../../dialogs/user-create/user-create.compo
 import { UserDetailComponent } from '../../dialogs/user-detail/user-detail.component'
 import { DbService } from '../../services/db.service'
 import { exportExcel } from '../../services/export-excel'
+import { downloadFile } from '../../services/file-download'
 
 @Component({
     selector: 'app-home',
@@ -31,6 +32,21 @@ export class HomeComponent implements OnInit {
         this.dbService.database.allHistory().then(history => {
             exportExcel(this.users, history)
         })
+    }
+
+    exportDB() {
+        this.dbService.database.exportDb()
+            .then(blob => downloadFile(blob, "save.json"))
+    }
+
+    fileSelected(event: Event) {
+        const files = (event.target as HTMLInputElement).files
+        if (files?.[0]) {
+            this.dbService.database
+                .importDb(files[0])
+                .then(() => alert("upload OK"))
+                .catch(e => alert("fail " + e))
+        }
     }
 
     doFilter() {
