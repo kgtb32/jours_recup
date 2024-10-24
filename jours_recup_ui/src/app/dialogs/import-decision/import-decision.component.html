@@ -1,0 +1,23 @@
+<input type="file" #fileUpload (change)="this.fileSelected($event)" class="d-none" />
+<p>Choisissez la stratégie d'import</p>
+<div class="d-flex flex-column gap-1">
+    <div class="d-flex">
+        <input type="radio" id="importChoiceNormal" name="importChoice" value="normal" [(ngModel)]="importChoice" />
+        <label for="importChoiceNormal">
+            <b>Stricte</b>
+            <br />
+            <span>Importe le fichier en écrasant toutes les modifications présentes localement (recommandé - rapide)</span>
+        </label>
+    </div>
+    <div class="d-flex">
+        <input type="radio" name="importChoice" value="conflicts" [(ngModel)]="importChoice" />
+        <label for="importChoiceConflicts">
+            <b>Avec gestion de conflits</b>
+            <br />
+            <span>Importe le fichier, permet de gérer les conflits (plus long)</span>
+            <br />
+            <span>Utile dans le cas ou des modifications ont été apportées depuis le dernier enregistrement du fichier.</span>
+        </label>
+    </div>
+</div>
+<p-button icon="pi pi-file-import" label="Importer" (onClick)="fileUpload.click()"></p-button>

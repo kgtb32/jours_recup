@@ -1,8 +1,6 @@
-<input type="file" #fileUpload (change)="this.fileSelected($event)" class="d-none" />
-
 <p-toolbar>
     <div class="d-flex gap-1">
-        <p-button icon="pi pi-folder-open" label="Importer" (click)="fileUpload.click()"></p-button>
+        <p-button icon="pi pi-folder-open" label="Importer" (click)="importDB()"></p-button>
         <p-button icon="pi pi-save" label="Enregistrer" (click)="this.exportDB()"></p-button>
         <p-button icon="pi pi-user-plus" label="Ajouter une personne" (click)="this.addUsers()"></p-button>
     </div>
