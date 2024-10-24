@@ -8,6 +8,7 @@ import { UserDetailComponent } from './user-detail.component'
 import { CardModule } from 'primeng/card'
 import { ButtonModule } from 'primeng/button'
 import { RecuperationDaysEditModule } from '../../components/recuperation-days-edit/recuperation-days-edit.module'
+import { TableModule } from 'primeng/table'
 
 @NgModule({
     declarations: [UserDetailComponent],
@@ -19,7 +20,8 @@ import { RecuperationDaysEditModule } from '../../components/recuperation-days-e
         CardModule,
         TimelineModule,
         ButtonModule,
-        RecuperationDaysEditModule
+        RecuperationDaysEditModule,
+        TableModule
     ],
 })
 export class UserDetailModule { }

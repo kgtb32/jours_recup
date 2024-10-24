@@ -1,9 +1,10 @@
 import { Component } from '@angular/core'
+import dayjs from 'dayjs'
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { History } from '../../database/entities/history'
 import { User } from '../../database/entities/user'
-import { DbService } from '../../services/db.service'
 import { RecuperationDays } from '../../models/recuperation-days'
+import { DbService } from '../../services/db.service'
 
 @Component({
     selector: 'app-user-detail',
@@ -82,5 +83,9 @@ export class UserDetailComponent {
             .clearUserHistory(this.user.id!)
             .then(() => (this.history = []))
             .catch((e) => alert(e))
+    }
+
+    getDate(date: Date) {
+        return dayjs(date).format("DD/MM/YYYY")
     }
 }

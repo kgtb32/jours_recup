@@ -10,20 +10,25 @@
 </div>
 <div>
     <div style="overflow: auto; max-height: 46vh; padding-right: 1em">
-        <p-timeline [value]="history" align="right">
-            <ng-template pTemplate="content" let-event>
-                <p-card styleClass="mt-2">
-                    <h4>{{ event.date }}</h4>
-                    <p>Type d'évennement : {{ this.eventsTranslations[event.action] }}</p>
-                    @if(event.oldValue){
-                    <p>Ancienne valeur : {{ event.oldValue }}</p>
-                    } @if(event.newValue){
-                    <p>Nouvelle valeur : {{ event.newValue }}</p>
-                    } @if(event.reason){
-                    <p>Motif : {{ event.reason }}</p>
-                    }
-                </p-card>
+        <p-table [value]="history" styleClass="p-datatable-sm p-datatable-striped" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]" [paginator]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Ancienne valeur</th>
+                    <th scope="col">Nouvelle valeur</th>
+                    <th scope="col">Motif</th>
+                </tr>
             </ng-template>
-        </p-timeline>
+            <ng-template pTemplate="body" let-event>
+                <tr>
+                    <td>{{ this.eventsTranslations[event.action] }}</td>
+                    <td>{{ getDate(event.date) }}</td>
+                    <td>{{ event.oldValue }}</td>
+                    <td>{{ event.newValue }}</td>
+                    <td>{{ event.reason }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
 </div>
