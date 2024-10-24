@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
     constructor(private readonly dbService: DbService, private readonly dialogService: DialogService) { }
 
     doExportExcel() {
-        exportExcel(this.users)
+        this.dbService.database.allHistory().then(history => {
+            exportExcel(this.users, history)
+        })
     }
 
     doFilter() {

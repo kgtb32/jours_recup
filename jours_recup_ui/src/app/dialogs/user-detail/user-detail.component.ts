@@ -5,6 +5,7 @@ import { History } from '../../database/entities/history'
 import { User } from '../../database/entities/user'
 import { RecuperationDays } from '../../models/recuperation-days'
 import { DbService } from '../../services/db.service'
+import { eventTranslations } from '../../statics/event-translations'
 
 @Component({
     selector: 'app-user-detail',
@@ -15,14 +16,7 @@ export class UserDetailComponent {
     public user: User
     public history: History[]
 
-    public readonly eventsTranslations: {
-        [key: string]: string
-    } = {
-            CREATE: 'Création',
-            CREDIT_EDIT: 'Modification du crédit',
-            FIRSTNAME_EDIT: 'Modification du prénom',
-            LASTNAME_EDIT: 'Modification du nom',
-        }
+    public readonly eventsTranslations: { [key: string]: string } = eventTranslations
 
     constructor(readonly config: DynamicDialogConfig, private readonly dbService: DbService, private readonly ref: DynamicDialogRef) {
         this.user = config.data.user
