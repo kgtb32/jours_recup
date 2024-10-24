@@ -7,9 +7,19 @@ import { EditComponentModule } from '../../components/edit-component/edit-compon
 import { UserDetailComponent } from './user-detail.component'
 import { CardModule } from 'primeng/card'
 import { ButtonModule } from 'primeng/button'
+import { RecuperationDaysEditModule } from '../../components/recuperation-days-edit/recuperation-days-edit.module'
 
 @NgModule({
     declarations: [UserDetailComponent],
-    imports: [CommonModule, DynamicDialogModule, InputTextModule, EditComponentModule, CardModule, TimelineModule, ButtonModule],
+    imports: [
+        CommonModule,
+        DynamicDialogModule,
+        InputTextModule,
+        EditComponentModule,
+        CardModule,
+        TimelineModule,
+        ButtonModule,
+        RecuperationDaysEditModule
+    ],
 })
-export class UserDetailModule {}
+export class UserDetailModule { }

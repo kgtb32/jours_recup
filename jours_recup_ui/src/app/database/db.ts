@@ -48,27 +48,12 @@ export class AppDB extends Dexie {
         return this.history.add(history)
     }
 
-    private getHistory(userId: number) {
+    getUserHistory(userId: number): Promise<History[]> {
         return this.history
             .orderBy('date')
-            .reverse()
             .filter((history) => history.userId == userId)
-    }
-
-    maintainHistory(userId: number) {
-        return this.getHistory(userId)
-            .offset(20)
-            .delete()
-    }
-
-    getUserHistory(userId: number): Promise<History[]> {
-        return new Promise<History[]>((resolve, reject) => {
-            this.maintainHistory(userId)
-                .then(() => this.getHistory(userId).toArray())
-                .then(resolve)
-                .catch(reject)
-
-        })
+            .reverse()
+            .toArray()
     }
 
     clearUserHistory(userId: number) {
