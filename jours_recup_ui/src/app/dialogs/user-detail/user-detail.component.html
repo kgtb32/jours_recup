@@ -1,6 +1,6 @@
 <app-edit-component (dataChanged)="this.editUserInfo('LASTNAME_EDIT', $event)" description="Nom" [data]="this.user.lastName"></app-edit-component>
 <app-edit-component (dataChanged)="this.editUserInfo('FIRSTNAME_EDIT', $event)" description="Prénom" [data]="this.user.firstName"></app-edit-component>
-<app-edit-component (dataChanged)="this.editRecuperationDays($event)" description="Jours de récupération" [data]="this.user.recuperationDays"></app-edit-component>
+<app-recuperation-days-edit [baseData]="this.user.recuperationDays" (dataChanged)="editRecuperationDays($event)"></app-recuperation-days-edit>
 
 <div class="d-flex justify-content-between mt-2">
     <h2>Évennements :</h2>
@@ -19,6 +19,8 @@
                     <p>Ancienne valeur : {{ event.oldValue }}</p>
                     } @if(event.newValue){
                     <p>Nouvelle valeur : {{ event.newValue }}</p>
+                    } @if(event.reason){
+                    <p>Motif : {{ event.reason }}</p>
                     }
                 </p-card>
             </ng-template>

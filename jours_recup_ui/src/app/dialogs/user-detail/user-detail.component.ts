@@ -3,6 +3,7 @@ import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { History } from '../../database/entities/history'
 import { User } from '../../database/entities/user'
 import { DbService } from '../../services/db.service'
+import { RecuperationDays } from '../../models/recuperation-days'
 
 @Component({
     selector: 'app-user-detail',
@@ -16,11 +17,11 @@ export class UserDetailComponent {
     public readonly eventsTranslations: {
         [key: string]: string
     } = {
-        CREATE: 'Création',
-        CREDIT_EDIT: 'Modification du crédit',
-        FIRSTNAME_EDIT: 'Modification du prénom',
-        LASTNAME_EDIT: 'Modification du nom',
-    }
+            CREATE: 'Création',
+            CREDIT_EDIT: 'Modification du crédit',
+            FIRSTNAME_EDIT: 'Modification du prénom',
+            LASTNAME_EDIT: 'Modification du nom',
+        }
 
     constructor(readonly config: DynamicDialogConfig, private readonly dbService: DbService, private readonly ref: DynamicDialogRef) {
         this.user = config.data.user
@@ -31,13 +32,13 @@ export class UserDetailComponent {
         const finalUser: User =
             type == 'FIRSTNAME_EDIT'
                 ? {
-                      ...this.user,
-                      firstName: value,
-                  }
+                    ...this.user,
+                    firstName: value,
+                }
                 : {
-                      ...this.user,
-                      lastName: value,
-                  }
+                    ...this.user,
+                    lastName: value,
+                }
         Promise.all([
             this.dbService.database.editUser(this.user.id!, finalUser),
             this.dbService.database.history.add({
@@ -58,16 +59,17 @@ export class UserDetailComponent {
         this.user = finalUser
     }
 
-    editRecuperationDays(value: number) {
-        const finalUser = { ...this.user, recuperationDays: value }
+    editRecuperationDays(value: RecuperationDays) {
+        const finalUser = { ...this.user, recuperationDays: value.days }
         Promise.all([
             this.dbService.database.editUser(this.user.id!, finalUser),
             this.dbService.database.history.add({
                 action: 'CREDIT_EDIT',
-                date: new Date(),
+                date: new Date(value.date),
                 userId: this.user.id!,
-                newValue: value.toString(),
+                newValue: value.days.toString(),
                 oldValue: this.user.recuperationDays.toString(),
+                reason: value.reason
             }),
         ])
             .then(() => this.dbService.database.getUserHistory(this.user.id!))

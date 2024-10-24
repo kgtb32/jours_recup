@@ -5,6 +5,7 @@ export interface History {
     userId: number
     date: Date
     action: Action
+    reason?: string
     oldValue?: string
     newValue?: string
 }
