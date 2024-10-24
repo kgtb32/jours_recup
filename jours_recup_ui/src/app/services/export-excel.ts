@@ -26,7 +26,7 @@ function addHistory(wb: Workbook, history: History[], user: User[]) {
     const usersMap: { [key: string]: { firstName: string, lastName: string } } =
         user.reduce((prev, curr) => ({ ...prev, [curr.id!]: { firstName: curr.firstName, lastName: curr.lastName } }), {})
     const sheet = wb.addWorksheet("Historique")
-    sheet.autoFilter = ""
+    sheet.autoFilter = "A1:G1"
     sheet.addRow(["Nom", "Prénom", "Action", "Date", 'Ancienne valeur', 'Nouvelle valeur', 'Motif'])
     history.forEach(currentHistory => {
         sheet.addRow([

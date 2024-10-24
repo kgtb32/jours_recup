@@ -36,7 +36,9 @@ export class HomeComponent implements OnInit {
     }
 
     importDB() {
-        this.dialogService.open(ImportDecisionComponent, { header: 'Import' })
+        this.dialogService.open(ImportDecisionComponent, { header: 'Import' }).onClose.subscribe({
+            next: () => this.getUsers()
+        })
     }
 
     exportDB() {
