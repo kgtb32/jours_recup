@@ -6,6 +6,7 @@ import { User } from '../../database/entities/user'
 import { RecuperationDays } from '../../models/recuperation-days'
 import { DbService } from '../../services/db.service'
 import { eventTranslations } from '../../statics/event-translations'
+import { SaveStateService } from '../../services/save-state.service'
 
 @Component({
     selector: 'app-user-detail',
@@ -18,7 +19,11 @@ export class UserDetailComponent {
 
     public readonly eventsTranslations: { [key: string]: string } = eventTranslations
 
-    constructor(readonly config: DynamicDialogConfig, private readonly dbService: DbService) {
+    constructor(
+        readonly config: DynamicDialogConfig,
+        private readonly dbService: DbService,
+        private readonly saveStateService: SaveStateService
+    ) {
         this.user = config.data.user
         this.history = config.data.history
     }
@@ -52,6 +57,7 @@ export class UserDetailComponent {
     private valuesUpdated(history: History[], finalUser: User) {
         this.history = history
         this.user = finalUser
+        this.saveStateService.unsaved()
     }
 
     editRecuperationDays(value: RecuperationDays) {

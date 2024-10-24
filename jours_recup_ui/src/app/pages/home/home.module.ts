@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverlayModule } from 'primeng/overlay';
 import { OverlayPanelModule } from 'primeng/overlaypanel'
 import { ImportDecisionModule } from '../../dialogs/import-decision/import-decision.module';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ImportDecisionModule } from '../../dialogs/import-decision/import-decis
     MessagesModule,
     FormsModule,
     ReactiveFormsModule,
+    TooltipModule,
     OverlayModule,
     OverlayPanelModule,
   ]

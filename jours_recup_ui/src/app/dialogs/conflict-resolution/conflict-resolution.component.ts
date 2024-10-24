@@ -3,6 +3,7 @@ import { Conflict } from '../../models/conflict';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { User } from '../../database/entities/user';
 import { DbService } from '../../services/db.service';
+import { SaveStateService } from '../../services/save-state.service';
 
 @Component({
   selector: 'app-conflict-resolution',
@@ -19,11 +20,17 @@ export class ConflictResolutionComponent {
     return this.conflicts[this.currentConflictIndex]
   }
 
-  constructor(private readonly config: DynamicDialogConfig, private readonly ref: DynamicDialogRef, private readonly dbService: DbService) {
+  constructor(
+    private readonly config: DynamicDialogConfig,
+    private readonly ref: DynamicDialogRef,
+    private readonly dbService: DbService,
+    private readonly saveStateService: SaveStateService
+  ) {
     this.conflicts = config.data?.['conflicts'] ?? []
     if (this.conflicts.length == 0) {
       ref.close()
     }
+    this.saveStateService.unsaved()
     this.updateHeader()
   }
 

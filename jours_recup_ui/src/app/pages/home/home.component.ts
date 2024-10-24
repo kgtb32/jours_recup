@@ -8,6 +8,7 @@ import { DbService } from '../../services/db.service'
 import { exportExcel } from '../../services/export-excel'
 import { downloadFile } from '../../services/file-download'
 import { ImportDecisionComponent } from '../../dialogs/import-decision/import-decision.component'
+import { SaveStateService } from '../../services/save-state.service'
 
 @Component({
     selector: 'app-home',
@@ -27,7 +28,11 @@ export class HomeComponent implements OnInit {
 
     users: User[] = []
 
-    constructor(private readonly dbService: DbService, private readonly dialogService: DialogService) { }
+    constructor(
+        private readonly dbService: DbService,
+        private readonly dialogService: DialogService,
+        public readonly saveStateService: SaveStateService
+    ) { }
 
     doExportExcel() {
         this.dbService.database.allHistory().then(history => {
@@ -43,7 +48,10 @@ export class HomeComponent implements OnInit {
 
     exportDB() {
         this.dbService.database.exportDb()
-            .then(blob => downloadFile(blob, "save.json"))
+            .then(blob => {
+                downloadFile(blob, "save.json")
+                this.saveStateService.save()
+            })
     }
 
     doFilter() {
