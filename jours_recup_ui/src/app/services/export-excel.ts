@@ -23,7 +23,7 @@ function addUsers(wb: Workbook, user: User[]) {
 }
 
 function addHistory(wb: Workbook, history: History[], user: User[]) {
-    const usersMap: { [key: number]: { firstName: string, lastName: string } } =
+    const usersMap: { [key: string]: { firstName: string, lastName: string } } =
         user.reduce((prev, curr) => ({ ...prev, [curr.id!]: { firstName: curr.firstName, lastName: curr.lastName } }), {})
     const sheet = wb.addWorksheet("Historique")
     sheet.autoFilter = ""

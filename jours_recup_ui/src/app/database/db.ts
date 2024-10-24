@@ -2,31 +2,32 @@ import Dexie, { PromiseExtended, Table } from 'dexie'
 import { User } from './entities/user'
 import { History } from './entities/history'
 import { deburr } from 'lodash'
+import { nanoid } from 'nanoid'
 import 'dexie-export-import'
 
 export class AppDB extends Dexie {
     private static readonly MAX_HISTORY_ALL = 20000;
 
-    users!: Table<User, number>
-    history!: Table<History, number>
+    users!: Table<User, string>
+    history!: Table<History, string>
 
     constructor() {
         super('daysRecup')
         this.version(1).stores({
-            users: '++id',
-            history: '++id, userId, date',
+            users: '&id',
+            history: '&id, userId, date',
         })
     }
 
-    addUser(user: User): PromiseExtended<number> {
-        return this.users.add(user)
+    addUser(user: User): PromiseExtended<string> {
+        return this.users.add({ ...user, id: nanoid(32) })
     }
 
-    editUser(id: number, user: User): PromiseExtended<number> {
+    editUser(id: string, user: User): PromiseExtended<number> {
         return this.users.update(id, user)
     }
 
-    deleteUser(id: number): Promise<[void, number]> {
+    deleteUser(id: string): Promise<[void, number]> {
         return Promise.all([
             this.users.delete(id),
             this.clearUserHistory(id)
@@ -48,10 +49,10 @@ export class AppDB extends Dexie {
     }
 
     addHistory(history: History) {
-        return this.history.add(history)
+        return this.history.add({ ...history, id: nanoid(32) })
     }
 
-    getUserHistory(userId: number): Promise<History[]> {
+    getUserHistory(userId: string): Promise<History[]> {
         return this.history
             .orderBy('date')
             .filter((history) => history.userId == userId)
@@ -59,7 +60,7 @@ export class AppDB extends Dexie {
             .toArray()
     }
 
-    clearUserHistory(userId: number) {
+    clearUserHistory(userId: string) {
         return this.history.filter((history) => history.userId == userId).delete()
     }
 
