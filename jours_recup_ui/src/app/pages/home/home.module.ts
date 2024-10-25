@@ -13,7 +13,8 @@ import { OverlayModule } from 'primeng/overlay';
 import { OverlayPanelModule } from 'primeng/overlaypanel'
 import { ImportDecisionModule } from '../../dialogs/import-decision/import-decision.module';
 import { TooltipModule } from 'primeng/tooltip';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,12 @@ import { TooltipModule } from 'primeng/tooltip';
     FormsModule,
     ReactiveFormsModule,
     TooltipModule,
+    ToastModule,
     OverlayModule,
     OverlayPanelModule,
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class HomeModule { }

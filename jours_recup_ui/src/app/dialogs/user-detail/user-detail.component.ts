@@ -78,13 +78,6 @@ export class UserDetailComponent {
             .catch((e) => alert(e))
     }
 
-    clearHistory() {
-        this.dbService.database
-            .clearUserHistory(this.user.id!)
-            .then(() => (this.history = []))
-            .catch((e) => alert(e))
-    }
-
     getDate(date: Date) {
         return dayjs(date).format("DD/MM/YYYY")
     }
