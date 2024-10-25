@@ -24,7 +24,7 @@ export class RecuperationDaysEditComponent {
   isEditing: boolean = false;
 
   formGroup: FormGroup = new FormGroup({
-    days: new FormControl({ value: 0, disabled: true }, [Validators.required, Validators.pattern("\\d+")],),
+    days: new FormControl({ value: 0, disabled: true }, [Validators.required, Validators.pattern("\\d+(.\\d+){0,1}")],),
     date: new FormControl({ value: '', disabled: true }, [Validators.required]),
     reason: new FormControl({ value: '', disabled: true }, [Validators.required])
   })
