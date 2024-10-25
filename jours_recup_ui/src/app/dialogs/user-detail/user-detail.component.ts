@@ -41,7 +41,7 @@ export class UserDetailComponent {
                 }
         Promise.all([
             this.dbService.database.editUser(this.user.id!, finalUser),
-            this.dbService.database.history.add({
+            this.dbService.database.addHistory({
                 action: type,
                 date: new Date(),
                 userId: this.user.id!,
@@ -75,13 +75,6 @@ export class UserDetailComponent {
         ])
             .then(() => this.dbService.database.getUserHistory(this.user.id!))
             .then((history) => this.valuesUpdated(history, finalUser))
-            .catch((e) => alert(e))
-    }
-
-    clearHistory() {
-        this.dbService.database
-            .clearUserHistory(this.user.id!)
-            .then(() => (this.history = []))
             .catch((e) => alert(e))
     }
 

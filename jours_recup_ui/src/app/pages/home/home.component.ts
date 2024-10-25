@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Message } from 'primeng/api'
+import { Message, MessageService } from 'primeng/api'
 import { DialogService } from 'primeng/dynamicdialog'
 import { User } from '../../database/entities/user'
 import { UserCreateComponent } from '../../dialogs/user-create/user-create.component'
@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private readonly dbService: DbService,
         private readonly dialogService: DialogService,
-        public readonly saveStateService: SaveStateService
+        public readonly saveStateService: SaveStateService,
+        private readonly messageService: MessageService
     ) { }
 
     doExportExcel() {
@@ -41,9 +42,10 @@ export class HomeComponent implements OnInit {
     }
 
     importDB() {
-        this.dialogService.open(ImportDecisionComponent, { header: 'Import' }).onClose.subscribe({
-            next: () => this.getUsers()
-        })
+        this.dialogService.open(ImportDecisionComponent, { header: 'Importer une sauvegarde' })
+            .onClose.subscribe({
+                next: () => this.getUsers()
+            })
     }
 
     exportDB() {
@@ -51,6 +53,11 @@ export class HomeComponent implements OnInit {
             .then(blob => {
                 downloadFile(blob, "save.json")
                 this.saveStateService.save()
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Enregistrement',
+                    detail: 'Le fichier de sauvegarde "save.json" à été téléchargé.'
+                });
             })
     }
 
