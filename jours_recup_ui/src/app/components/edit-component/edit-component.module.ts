@@ -4,10 +4,11 @@ import { EditComponentComponent } from './edit-component.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { InputTextModule } from 'primeng/inputtext'
 import { ButtonModule } from 'primeng/button'
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu'
 
 @NgModule({
     declarations: [EditComponentComponent],
-    imports: [CommonModule, InputTextModule, FormsModule, ReactiveFormsModule, ButtonModule],
+    imports: [CommonModule, InputTextModule, FormsModule, ReactiveFormsModule, ButtonModule, TourMatMenuModule],
     exports: [EditComponentComponent],
 })
-export class EditComponentModule {}
+export class EditComponentModule { }

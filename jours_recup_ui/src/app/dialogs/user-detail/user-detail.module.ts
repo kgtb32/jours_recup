@@ -10,6 +10,7 @@ import { ButtonModule } from 'primeng/button'
 import { RecuperationDaysEditModule } from '../../components/recuperation-days-edit/recuperation-days-edit.module'
 import { TableModule } from 'primeng/table'
 import { ConflictResolutionModule } from '../conflict-resolution/conflict-resolution.module'
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu'
 
 @NgModule({
     declarations: [UserDetailComponent],
@@ -23,7 +24,8 @@ import { ConflictResolutionModule } from '../conflict-resolution/conflict-resolu
         ButtonModule,
         RecuperationDaysEditModule,
         TableModule,
-        ConflictResolutionModule
+        ConflictResolutionModule,
+        TourMatMenuModule
     ],
 })
 export class UserDetailModule { }

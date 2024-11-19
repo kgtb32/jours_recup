@@ -8,6 +8,4 @@
         <input type="text" pInputText id="firstName" formControlName="firstName" />
     </div>
 </form>
-<button pButton (click)="createUser()" [disabled]="!this.formGroup.valid" class="mt-2">
-    Ajouter
-</button>
+<button pButton (click)="createUser()" [disabled]="!this.formGroup.valid" class="mt-2" tourAnchor="create-user">Ajouter</button>

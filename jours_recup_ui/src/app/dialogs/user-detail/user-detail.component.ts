@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import dayjs from 'dayjs'
-import { DynamicDialogConfig } from 'primeng/dynamicdialog'
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog'
 import { History } from '../../database/entities/history'
 import { User } from '../../database/entities/user'
 import { RecuperationDays } from '../../models/recuperation-days'
@@ -21,6 +21,7 @@ export class UserDetailComponent {
 
     constructor(
         readonly config: DynamicDialogConfig,
+        readonly ref: DynamicDialogRef,
         private readonly dbService: DbService,
         private readonly saveStateService: SaveStateService
     ) {

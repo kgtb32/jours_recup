@@ -15,6 +15,7 @@ import { ImportDecisionModule } from '../../dialogs/import-decision/import-decis
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MessageService } from 'primeng/api';
     ToastModule,
     OverlayModule,
     OverlayPanelModule,
+    TourMatMenuModule
   ],
   providers: [
     MessageService

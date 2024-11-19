@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 
 
@@ -21,6 +22,7 @@ import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
     ButtonModule,
     ReactiveFormsModule,
     DynamicDialogModule,
+    TourMatMenuModule,
   ],
   providers: [
     DialogService

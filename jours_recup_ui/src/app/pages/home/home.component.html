@@ -1,12 +1,13 @@
 <p-toolbar>
     <div class="d-flex gap-1 flex-wrap">
-        <p-button icon="pi pi-folder-open" label="Importer" (click)="importDB()"></p-button>
-        <p-button icon="pi pi-save" label="Enregistrer" (click)="this.exportDB()"></p-button>
-        <p-button icon="pi pi-user-plus" label="Ajouter une personne" (click)="this.addUsers()"></p-button>
-        <p-button pTooltip="État de la sauvegarde" icon="pi pi-save" [severity]="this.saveStateService.hasSaved ? 'success' : 'danger'"></p-button>
+        <p-button icon="pi pi-folder-open" tourAnchor="import-db" label="Importer" (click)="importDB()"></p-button>
+        <p-button icon="pi pi-save" tourAnchor="export-db" label="Enregistrer" (click)="this.exportDB()"></p-button>
+        <p-button tourAnchor="add-user" icon="pi pi-user-plus" label="Ajouter une personne" (click)="this.addUsers()"></p-button>
+        <p-button tourAnchor="save-state" pTooltip="État de la sauvegarde" icon="pi pi-save" [severity]="this.saveStateService.hasSaved ? 'success' : 'danger'"></p-button>
     </div>
-    <input class="flex-1" type="text" [(ngModel)]="filter" pInputText placeholder="rechercher" (input)="this.doFilter()" />
-    <p-button icon="pi pi-file-excel" (click)="doExportExcel()" label="Export Excel"></p-button>
+    <input tourAnchor="search" class="flex-1" type="text" [(ngModel)]="filter" pInputText placeholder="rechercher" (input)="this.doFilter()" />
+    <p-button tourAnchor="excel-export" icon="pi pi-file-excel" (click)="doExportExcel()" label="Export Excel"></p-button>
+    <p-button icon="pi pi-question-circle" label="Aide" (click)="this.tour()"></p-button>
 </p-toolbar>
 <p-table [rows]="10" lazy="false" [rowsPerPageOptions]="[10, 25, 50]" [value]="users" styleClass="p-datatable-striped" [paginator]="true" [globalFilterFields]="['lastName', 'firstName']">
     <ng-template pTemplate="header">
@@ -17,7 +18,7 @@
             <th scope="col"></th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-user>
+    <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
         <tr>
             <td>{{ user.lastName }}</td>
             <td>{{ user.firstName }}</td>
@@ -25,11 +26,11 @@
             <td>
                 <div class="d-flex">
                     <span class="flex-1"></span>
-                    <p-button icon="pi pi-search" (click)="showUserDetail(user)"></p-button>
-                    <p-button severity="danger" icon="pi pi-trash" (click)="op.toggle($event)"></p-button>
+                    <p-button icon="pi pi-search" tourAnchor="user-detail-{{ rowIndex }}" (click)="showUserDetail(user)"></p-button>
+                    <p-button severity="danger" icon="pi pi-trash" tourAnchor="user-delete-{{ rowIndex }}" (click)="op.toggle($event)"></p-button>
                     <p-overlayPanel #op>
                         <p>êtes vous sûr ?</p>
-                        <div class="d-flex">
+                        <div class="d-flex" tourAnchor="user-delete-{{ rowIndex }}-confirm">
                             <p-button (onClick)="op.toggle(false)">Fermer</p-button>
                             <p-button severity="danger" (onClick)="deleteUser(user.id)">Supprimer</p-button>
                         </div>
