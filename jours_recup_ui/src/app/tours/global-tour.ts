@@ -90,7 +90,7 @@ export const globalTourSteps: IStepOption[] = [
     {
         anchorId: 'start',
         title: 'Attention !',
-        content: 'Si vous utilisez edge, assurez vous que votre navigateur est bien configuré suivez le tutoriel situé sur https://kgtb32.github.io/jours_recup/help',
+        content: 'Si vous utilisez edge, assurez vous que votre navigateur est bien configuré suivez le tutoriel situé sur https://t.ly/R5Jfn',
     },
     {
         anchorId: 'start',
