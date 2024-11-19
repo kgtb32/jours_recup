@@ -4,6 +4,7 @@ import { RecuperationDaysEditComponent } from './recuperation-days-edit.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { TourMatMenuModule } from 'ngx-ui-tour-md-menu';
 
 
 
@@ -16,7 +17,8 @@ import { ButtonModule } from 'primeng/button';
     FormsModule,
     ReactiveFormsModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    TourMatMenuModule
   ],
   exports: [
     RecuperationDaysEditComponent

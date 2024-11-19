@@ -157,6 +157,15 @@
     vite "5.4.6"
     watchpack "2.4.1"
 
+"@angular/cdk@^18.2.13":
+  version "18.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-18.2.13.tgz#3d6b7cfa35b8873b419d7a90e3d2e20331cf9f35"
+  integrity sha512-yBKoqcOwmwXnc5phFMEEMO130/Bz9beQLJrKzIS87f6TXaGCeBs4xrPHq2i7Xx/2TqvMiOD9ucjmlVbtGvNG3w==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^7.1.2"
+
 "@angular/cli@^18.2.8":
   version "18.2.8"
   resolved "https://registry.npmjs.org/@angular/cli/-/cli-18.2.8.tgz"
@@ -219,6 +228,13 @@
   version "18.2.8"
   resolved "https://registry.npmjs.org/@angular/forms/-/forms-18.2.8.tgz"
   integrity sha512-JCLki7KC6D5vF6dE6yGlBmW33khIgpHs8N9SzuiJtkQqNDTIQA8cPsGV6qpLpxflxASynQOX5lDkWYdQyfm77Q==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/material@^18.2.13":
+  version "18.2.13"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-18.2.13.tgz#083c9b2fec3f10ba6f6778978618beb4b23fb03e"
+  integrity sha512-Gxyyo6G+IXJwgf6zDTjPfFJ2PnjC2YXWKGkKKG2oR0jfiYiovDvNR4oXxhsztTwkaxLwck/gscoVTSQXMkU5fg==
   dependencies:
     tslib "^2.3.0"
 
@@ -5373,6 +5389,21 @@ neo-async@^2.6.2:
   resolved "https://registry.npmjs.org/neo-async/-/neo-async-2.6.2.tgz"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-ui-tour-core@13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-ui-tour-core/-/ngx-ui-tour-core-13.0.0.tgz#11195fdaa0d9e74703ef8017a6f17f1732567293"
+  integrity sha512-svtp3zMoOnkGPL6eBKtJX3gsIir8aJzVg5KfSKNVO4ZMHGgh+MK55WfvmX8juv3gSJMBCMZta5b/7gjEn2g/Iw==
+  dependencies:
+    tslib "^2.0.0"
+
+ngx-ui-tour-md-menu@^13.0.0:
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/ngx-ui-tour-md-menu/-/ngx-ui-tour-md-menu-13.0.0.tgz#21780906688eac59df38852cb0548f59844ed31b"
+  integrity sha512-y1TcPTEHkmqRTgHDKRHty++Sqxag8QRH0BvIsU3LLucZryx48TpzskW8URsARC7MdgGmskg6Ep3cqAgtJysa/A==
+  dependencies:
+    ngx-ui-tour-core "13.0.0"
+    tslib "^2.0.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/nice-napi/-/nice-napi-1.0.2.tgz"
@@ -5724,6 +5755,13 @@ parse5@^7.0.0:
   version "7.2.0"
   resolved "https://registry.npmjs.org/parse5/-/parse5-7.2.0.tgz"
   integrity sha512-ZkDsAOcxsUMZ4Lz5fVciOehNcJ+Gb8gTzcA4yl3wnc273BAybYWrQ+Ks/OjCjSEpjvQkDSeZbybK9qj2VHHdGA==
+  dependencies:
+    entities "^4.5.0"
+
+parse5@^7.1.2:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-7.2.1.tgz#8928f55915e6125f430cc44309765bf17556a33a"
+  integrity sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==
   dependencies:
     entities "^4.5.0"
 

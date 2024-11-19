@@ -9,6 +9,8 @@ import { exportExcel } from '../../services/export-excel'
 import { downloadFile } from '../../services/file-download'
 import { ImportDecisionComponent } from '../../dialogs/import-decision/import-decision.component'
 import { SaveStateService } from '../../services/save-state.service'
+import { TourService } from 'ngx-ui-tour-md-menu'
+import { globalTourSteps } from '../../tours/global-tour'
 
 @Component({
     selector: 'app-home',
@@ -32,7 +34,8 @@ export class HomeComponent implements OnInit {
         private readonly dbService: DbService,
         private readonly dialogService: DialogService,
         public readonly saveStateService: SaveStateService,
-        private readonly messageService: MessageService
+        private readonly messageService: MessageService,
+        private readonly tourService: TourService
     ) { }
 
     doExportExcel() {
@@ -114,5 +117,17 @@ export class HomeComponent implements OnInit {
             .onClose.subscribe({
                 next: () => this.getUsers(),
             })
+    }
+
+    tour() {
+        this.tourService.initialize(globalTourSteps, {
+            enableBackdrop: true,
+            backdropConfig: {
+                offset: 10
+            },
+            nextBtnTitle: 'Suivant',
+            prevBtnTitle: 'Précédent',
+        })
+        this.tourService.start()
     }
 }
